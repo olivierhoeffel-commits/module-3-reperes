@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Les 3 Repères de Sécurité Biosociologique</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* === Styles internes du module === */
+
+.state-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border-top: 4px solid transparent;
+}
+.state-card:hover {
+  transform: translateY(-5px);
+}
+
+.active-classique { border-top: 8px solid #10b981 !important; background-color: #f0fdf4; }
+.active-bouscule { border-top: 8px solid #f59e0b !important; background-color: #fffbeb; }
+.active-inverse { border-top: 8px solid #6366f1 !important; background-color: #eef2ff; }
+
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+@keyframes pulse-animation {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.shake-light {
+  animation: shake 0.5s infinite ease-in-out;
+}
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  75% { transform: rotate(-2deg); }
+}
+</style>
+
+</head>
+
+<body class="bg-gray-50 font-sans p-4 md:p-8">
+
+<div class="max-w-6xl mx-auto">
+<header class="text-center mb-10">
+  <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+    Les 3 Repères de Sécurité Biosociologique
+  </h1>
+  <p class="text-gray-600 max-w-2xl mx-auto">
+    États dynamiques du vivant face aux pressions et aux signaux du milieu.
+  </p>
+</header>
+
+<!-- Cartes des Repères -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+
+  <!-- Repère Classique -->
+  <div id="card-classique" onclick="showState('classique')" class="state-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+    <div class="flex items-center mb-4">
+      <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-3 pulse">
+        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold text-emerald-900">Classique</h2>
+    </div>
+
+    <p class="text-sm text-gray-600 italic mb-4">"La sécurité est disponible."</p>
+
+    <div class="h-1.5 w-full bg-emerald-100 rounded-full">
+      <div class="h-full bg-emerald-500 w-full rounded-full"></div>
+    </div>
+
+    <p class="mt-4 text-xs font-bold text-emerald-600 uppercase">État : Ancré / Fluide</p>
+  </div>
+
+  <!-- Repère Bousculé -->
+  <div id="card-bouscule" onclick="showState('bouscule')" class="state-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+    <div class="flex items-center mb-4">
+      <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-3 shake-light">
+        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold text-amber-900">Bousculé</h2>
+    </div>
+
+    <p class="text-sm text-gray-600 italic mb-4">"L'axe vacille sous la charge."</p>
+
+    <div class="h-1.5 w-full bg-amber-100 rounded-full overflow-hidden">
+      <div class="h-full bg-amber-500 w-3/4 animate-pulse"></div>
+    </div>
+
+    <p class="mt-4 text-xs font-bold text-amber-600 uppercase">État : Sensible / En tension</p>
+  </div>
+
+  <!-- Repère Inversé -->
+  <div id="card-inverse" onclick="showState('inverse')" class="state-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+    <div class="flex items-center mb-4">
+      <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 
+                    <!-- Réaction du vivant -->
+        <div>
+          <h4 class="font-bold text-gray-800 mb-4 flex items-center uppercase text-sm tracking-tighter">
+            <span id="indicator-1" class="w-3 h-3 rounded-full mr-3"></span>
+            Réaction du Vivant
+          </h4>
+          <ul id="list-sna" class="space-y-3 text-gray-600"></ul>
+        </div>
+
+        <!-- Forme de bienveillance -->
+        <div>
+          <h4 class="font-bold text-gray-800 mb-4 flex items-center uppercase text-sm tracking-tighter">
+            <span id="indicator-2" class="w-3 h-3 rounded-full mr-3"></span>
+            Forme de Bienveillance
+          </h4>
+          <p id="detail-bienveillance" class="text-gray-600 leading-relaxed"></p>
+        </div>
+
+        <!-- Ce que le milieu doit offrir -->
+        <div>
+          <h4 class="font-bold text-gray-800 mb-4 flex items-center uppercase text-sm tracking-tighter">
+            <span id="indicator-3" class="w-3 h-3 rounded-full mr-3"></span>
+            Ce que le milieu doit offrir
+          </h4>
+          <ul id="list-besoins" class="space-y-3 text-gray-600 italic"></ul>
+        </div>
+
+        <!-- Dynamique biosociologique -->
+        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-center">
+          <h4 class="font-bold text-gray-700 mb-2 text-sm uppercase">
+            Dynamique Biosociologique
+          </h4>
+          <p id="detail-vivant" class="text-gray-600 italic"></p>
+        </div>
+
+      </div> <!-- fin grid -->
+    </div> <!-- fin content-area -->
+
+  </div> <!-- fin p-8 -->
+</div> <!-- fin detail-panel -->
+
+<footer class="mt-12 text-center text-gray-400 text-sm italic">
+  "Le vivant n'est jamais le problème. C'est le milieu qui bouscule ou qui sécurise."
+</footer>
+
+</div> <!-- fin max-w-6xl -->
+
+<script>
+const data = {
+
+  classique: {
+    title: "Repère Classique",
+    subtitle: "Le milieu est lisible, le vivant est ancré.",
+    tag: "Stabilité & Lien",
+    color: "emerald",
+    sna: [
+      "Neuroception de sécurité active",
+      "Capacité d'engagement social naturelle",
+      "Axe interne solide face au changement",
+      "Pas de détection de menace inutile"
+    ],
+    bienveillance: "Ajustée, directe et stable. Elle circule librement sans peur de la perte ou de l'invasion.",
+    besoins: [
+      "Maintenir la cohérence du sens",
+      "Prévisibilité des cadres",
+      "Liberté d'émergence",
+      "Respect de la parole donnée"
+    ],
+    vivant: "Le vivant investit son énergie dans la coopération. Il ne surveille pas, il œuvre."
+  },
+
+  bouscule: {
+    title: "Repère Bousculé",
+    subtitle: "Le milieu est instable, le vivant vacille.",
+    tag: "Hyper-Vigilance",
+    color: "amber",
+    sna: [
+      "Surcharge de signaux contradictoires",
+      "Vigilance accrue aux bruits du milieu",
+      "Réactivité émotionnelle en dents de scie",
+      "Fatigue métabolique par oscillation"
+    ],
+    bienveillance: "Fragile et réactive. Elle est présente mais peut s'interrompre brusquement en cas de 'secousse' du milieu.",
+    besoins: [
+      "Simplification immédiate (Moins de signaux)",
+      "Rappel solide du cadre et du timing",
+      "Validation de la charge subie",
+      "Ralentissement du débit"
+    ],
+    vivant: "Le vivant tente de ne pas tomber. Il consomme toute son énergie à essayer de retrouver son équilibre."
+  },
+
+  inverse: {
+    title: "Repère Inversé",
+    subtitle: "Le milieu a été dangereux, le vivant se blinde.",
+    tag: "Auto-Protection",
+    color: "indigo",
+    sna: [
+      "Douceur lue comme un signal de danger",
+      "Système fixé en mode protection/survie",
+      "Méfiançe intelligente face à l'inconnu",
+      "Accès au lien social verrouillé"
+    ],
+    bienveillance: "Codée, discrète, protectrice. C'est une bienveillance de 'tranchée', loyale mais méfiante envers l'extérieur.",
+    besoins: [
+      "Absence totale d'intrusion",
+      "Patience radicale et répétition du cadre",
+      "Preuves de sécurité sans rien demander en retour",
+      "Temps long pour la ré-inversion"
+    ],
+    vivant: "Le vivant survit. Il a appris que la visibilité est un danger. Il attend des garanties réelles de 'Clairière'."
+  }
+
+};
+
+function showState(state) {
+
+  const info = data[state];
+
+  const placeholder = document.getElementById('content-placeholder');
+  const area = document.getElementById('content-area');
+  const panel = document.getElementById('detail-panel');
+
+  panel.classList.remove('active-classique', 'active-bouscule', 'active-inverse');
+  void panel.offsetWidth;
+  panel.classList.add('active-' + state);
+
+  placeholder.classList.add('hidden');
+  area.classList.remove('hidden');
+
+  document.getElementById('detail-title').innerText = info.title;
+  document.getElementById('detail-subtitle').innerText = info.subtitle;
+
+  const tag = document.getElementById('detail-tag');
+  tag.innerText = info.tag;
+  tag.className = "px-4 py-2 rounded-lg text-xs font-black mt-4 md:mt-0 tracking-widest uppercase bg-" +
+    info.color + "-100 text-" + info.color + "-700 border border-" + info.color + "-200";
+
+  ['indicator-1', 'indicator-2', 'indicator-3'].forEach(function(id) {
+    document.getElementById(id).className = "w-3 h-3 rounded-full mr-3 bg-" + info.color + "-500";
+  });
+
+  updateList('list-sna', info.sna, info.color);
+  updateList('list-besoins', info.besoins, info.color);
+
+  document.getElementById('detail-bienveillance').innerText = info.bienveillance;
+  document.getElementById('detail-vivant').innerText = info.vivant;
+
+  document.querySelectorAll('.state-card').forEach(function(c) {
+    c.classList.remove('ring-4', 'ring-offset-2', 'ring-opacity-50',
+      'ring-emerald-400', 'ring-amber-400', 'ring-indigo-400');
+  });
+
+  const activeCard = document.getElementById('card-' + state);
+  activeCard.classList.add('ring-4', 'ring-offset-2', 'ring-opacity-50',
+    "ring-" + info.color + "-400");
+}
+
+function updateList(elementId, items, color) {
+
+  const list = document.getElementById(elementId);
+  list.innerHTML = '';
+
+  items.forEach(function(item) {
+    const li = document.createElement('li');
+    li.className = 'flex items-start';
+
+    li.innerHTML =
+      '<span class="text-' + color + '-500 mr-3 mt-1.5 w-1.5 h-1.5 rounded-full bg-current flex-shrink-0"></span>' +
+      '<span class="text-gray-600">' + item + '</span>';
+
+    list.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>
